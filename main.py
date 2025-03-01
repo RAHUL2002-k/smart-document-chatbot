@@ -13,7 +13,7 @@ VECTORDB_DIR = "chroma_db"
 OPENAI_API_KEY = "your_openai_api_key_here"  # Replace with your OpenAI API key
 
 # Initialize OpenAI LLM and embeddings
-llm = OpenAI(openai_api_key=OPENAI_API_KEY, temperature=0.1)
+llm = OpenAI(model_name='gpt-4o-mini', temperature=0.1)
 embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
 
 # Streamlit app title
