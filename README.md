@@ -1,53 +1,151 @@
-Objective:
-Develop an AI-powered chatbot that allows users to ask questions about documents and receive accurate, context-aware answers.
+📄 AI-Powered Document Q&A Chatbot (RAG)
 
-1️⃣ Problem Statement
-🔹 Traditional document search methods rely on keyword matching, which often retrieves irrelevant or incomplete information.
-🔹 Users have to manually scan long documents to find answers, which is time-consuming.
-🔹 A need for a conversational AI that can understand context and provide precise answers.
+An AI-powered Retrieval-Augmented Generation (RAG) chatbot that enables users to ask natural language questions about documents and receive accurate, context-aware answers using Large Language Models and semantic search.
 
-2️⃣ Solution Approach
-🔹 Built an AI-powered chatbot that can ingest documents, retrieve relevant information, and answer user queries accurately.
-🔹 Implemented a Retrieval-Augmented Generation (RAG) system to improve response accuracy.
+🎯 Objective
 
-3️⃣ Step-by-Step Implementation
+To build a conversational AI system that understands document context and provides precise answers, eliminating the need for manual document scanning and inefficient keyword-based search.
+
+❓ Problem Statement
+
+Traditional document search systems face several limitations:
+
+Keyword-based matching returns irrelevant or incomplete results
+
+Users must manually scan large documents
+
+Lack of contextual understanding leads to poor answer quality
+
+This project solves these problems by introducing an AI-driven document intelligence system.
+
+💡 Solution Overview
+
+The chatbot uses a Retrieval-Augmented Generation (RAG) approach:
+
+Documents are converted into vector embeddings
+
+Relevant document chunks are retrieved using semantic similarity
+
+A Large Language Model generates accurate answers grounded in retrieved content
+
+🛠️ Step-by-Step Implementation
 📌 Step 1: Document Ingestion & Preprocessing
-✅ Users upload documents (PDF, TXT).
-✅ The document is split into meaningful chunks using LangChain’s text splitter.
-✅ Each chunk is converted into vector embeddings for efficient retrieval.
 
-📌 Step 2: Embedding & Storage in Vector Database
-✅ Used OpenAI embeddings (text-embedding-ada-002) to convert text into numerical representations.
-✅ Stored the vectorized chunks in ChromaDB, enabling semantic search.
+Users upload documents (PDF, TXT)
+
+Documents are split into meaningful chunks using LangChain text splitters
+
+Text chunks are prepared for embedding generation
+
+📌 Step 2: Embedding & Vector Storage
+
+Text chunks are converted into embeddings using OpenAI text-embedding-ada-002
+
+Embeddings are stored in ChromaDB for efficient semantic search
 
 📌 Step 3: Query Processing & Retrieval
-✅ When a user asks a question, the system converts the query into an embedding.
-✅ ChromaDB retrieves the most relevant document sections based on similarity search.
 
-📌 Step 4: Answer Generation Using LLM (GPT-4)
-✅ Retrieved document chunks are passed to GPT-4 via LangChain for response generation.
-✅ The chatbot combines the retrieved text with LLM-generated responses for a highly accurate answer.
+User queries are converted into embeddings
 
-📌 Step 5: User Interaction via Chat Interface
-✅ Built an interactive UI using Streamlit, where users can:
+ChromaDB retrieves the most relevant document chunks using similarity search
+
+📌 Step 4: Answer Generation (LLM)
+
+Retrieved context is passed to GPT-4 via LangChain
+
+The LLM generates grounded, accurate answers
+
+Reduces hallucinations by restricting responses to retrieved content
+
+📌 Step 5: User Interface
+
+Interactive chatbot built using Streamlit
+
+Features:
+
+Upload documents
 
 Ask document-related questions
-Get AI-generated responses with cited document references
-Upload new documents for instant querying
-4️⃣ Technology Stack
-✅ LangChain → For LLM-based document retrieval and response generation
-✅ ChromaDB → For storing and retrieving document embeddings
-✅ OpenAI (GPT-4) → For natural language understanding and response generation
-✅ Streamlit → For user-friendly chatbot interaction
 
-5️⃣ Key Challenges & How I Solved Them
-🔹 Issue: Irrelevant document retrieval
+Get context-aware AI responses
 
-Solution: Tuned chunking strategy and improved similarity search thresholds in ChromaDB
-🔹 Issue: High response latency
-Solution: Implemented response caching using Redis
-6️⃣ Impact & Results
-🚀 35% improvement in document retrieval accuracy
-📈 50% reduction in response time
-🎯 Enhanced user experience for quick document-based Q&A
-   
+🧰 Tech Stack
+Component	Technology
+LLM Framework	LangChain
+Vector Database	ChromaDB
+Embeddings	OpenAI (text-embedding-ada-002)
+LLM	OpenAI GPT-4
+Frontend	Streamlit
+Caching	Redis
+⚙️ Setup & Installation
+1️⃣ Clone the Repository
+git clone https://github.com/your-username/document-rag-chatbot.git
+cd document-rag-chatbot
+
+2️⃣ Create Virtual Environment
+python -m venv venv
+source venv/bin/activate   # Windows: venv\Scripts\activate
+
+3️⃣ Install Dependencies
+pip install -r requirements.txt
+
+4️⃣ Set Environment Variables
+
+Create a .env file:
+
+OPENAI_API_KEY=your_api_key_here
+
+▶️ Run the Application
+streamlit run app.py
+
+📊 Challenges & Solutions
+❌ Irrelevant Retrieval
+
+Solution:
+Optimized chunk size, overlap, and similarity thresholds in ChromaDB
+
+❌ High Latency
+
+Solution:
+Implemented Redis caching to reduce repeated LLM calls
+
+🚀 Results & Impact
+
+📈 35% improvement in retrieval accuracy
+
+⚡ 50% reduction in response latency
+
+🎯 Faster and more reliable document-based Q&A
+
+🔮 Future Enhancements
+
+Multi-document and folder-level ingestion
+
+Source citations with page numbers
+
+Hybrid search (BM25 + Vector Search)
+
+Support for local & open-source LLMs
+
+Authentication and user session management
+
+📌 Use Cases
+
+Internal knowledge base search
+
+Legal & policy document analysis
+
+Research paper Q&A
+
+Enterprise document intelligence
+
+🤝 Contributing
+
+Contributions are welcome!
+Feel free to fork the repository and submit a pull request.
+
+📜 License
+
+This project is licensed under the MIT License.
+
+⭐ If you found this project useful, don’t forget to star the repository!
